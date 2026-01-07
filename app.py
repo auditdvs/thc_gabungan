@@ -111,7 +111,7 @@ if uploaded_files:
         combined_df_list.append(df_tlp)
 
     if 'KDP.xlsx' in dfs:
-    try:
+        try:
         df_kdp = dfs['KDP.xlsx']
         
         new_columns_kdp = [
@@ -227,4 +227,5 @@ if uploaded_files:
             st.error("All DataFrames are empty.")
     else:
         st.error("No valid DataFrames to process.")
+
 
