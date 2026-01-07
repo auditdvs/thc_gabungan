@@ -111,56 +111,75 @@ if uploaded_files:
         combined_df_list.append(df_tlp)
 
     if 'KDP.xlsx' in dfs:
+    try:
         df_kdp = dfs['KDP.xlsx']
+        
         new_columns_kdp = [
-        'DEBIT_Simpanan Pensiun', 'DEBIT_Simpanan Pokok', 'DEBIT_Simpanan Sukarela',
-        'DEBIT_Simpanan Wajib', 'DEBIT_Simpanan Hari Raya', 'DEBIT_Simpanan Qurban',
-        'DEBIT_Simpanan Sipadan', 'DEBIT_Simpanan Khusus', 'CREDIT_Simpanan Pensiun',
-        'CREDIT_Simpanan Pokok', 'CREDIT_Simpanan Sukarela', 'CREDIT_Simpanan Wajib',
-        'CREDIT_Simpanan Hari Raya', 'CREDIT_Simpanan Qurban', 'CREDIT_Simpanan Sipadan',
-        'CREDIT_Simpanan Khusus', 'DEBIT_PU', 'CREDIT_PU', 'DEBIT_TOTAL2', 'CREDIT_TOTAL2'
-    ]
+            'DEBIT_Simpanan Pensiun', 'DEBIT_Simpanan Pokok', 'DEBIT_Simpanan Sukarela',
+            'DEBIT_Simpanan Wajib', 'DEBIT_Simpanan Hari Raya', 'DEBIT_Simpanan Qurban',
+            'DEBIT_Simpanan Sipadan', 'DEBIT_Simpanan Khusus', 'CREDIT_Simpanan Pensiun',
+            'CREDIT_Simpanan Pokok', 'CREDIT_Simpanan Sukarela', 'CREDIT_Simpanan Wajib',
+            'CREDIT_Simpanan Hari Raya', 'CREDIT_Simpanan Qurban', 'CREDIT_Simpanan Sipadan',
+            'CREDIT_Simpanan Khusus', 'DEBIT_PU', 'CREDIT_PU', 'DEBIT_TOTAL2', 'CREDIT_TOTAL2'
+        ]
+        
         rename_dict_kdp = {
-        'KELOMPOK': 'KEL', 'DEBIT_Simpanan Hari Raya': 'Db Sihara',
-        'DEBIT_Simpanan Pensiun': 'Db Pensiun', 'DEBIT_Simpanan Pokok': 'Db Pokok',
-        'DEBIT_Simpanan Sukarela': 'Db Sukarela', 'DEBIT_Simpanan Wajib': 'Db Wajib',
-        'DEBIT_Simpanan Qurban': 'Db Qurban', 'DEBIT_Simpanan Sipadan': 'Db SIPADAN',
-        'DEBIT_Simpanan Khusus': 'Db Khusus', 'DEBIT_TOTAL': 'Db Total',
-        'CREDIT_Simpanan Hari Raya': 'Cr Sihara', 'CREDIT_Simpanan Pensiun': 'Cr Pensiun',
-        'CREDIT_Simpanan Pokok': 'Cr Pokok', 'CREDIT_Simpanan Sukarela': 'Cr Sukarela',
-        'CREDIT_Simpanan Wajib': 'Cr Wajib', 'CREDIT_Simpanan Qurban': 'Cr Qurban',
-        'CREDIT_Simpanan Sipadan': 'Cr SIPADAN', 'CREDIT_Simpanan Khusus': 'Cr Khusus',
-        'CREDIT_TOTAL': 'Cr Total', 'DEBIT_PU': 'Db PU', 'CREDIT_PU': 'Cr PU',
-        'DEBIT_TOTAL2': 'Db Total2', 'CREDIT_TOTAL2': 'Cr Total2'
-    }
+            'KELOMPOK': 'KEL', 'DEBIT_Simpanan Hari Raya': 'Db Sihara',
+            'DEBIT_Simpanan Pensiun': 'Db Pensiun', 'DEBIT_Simpanan Pokok': 'Db Pokok',
+            'DEBIT_Simpanan Sukarela': 'Db Sukarela', 'DEBIT_Simpanan Wajib': 'Db Wajib',
+            'DEBIT_Simpanan Qurban': 'Db Qurban', 'DEBIT_Simpanan Sipadan': 'Db SIPADAN',
+            'DEBIT_Simpanan Khusus': 'Db Khusus', 'DEBIT_TOTAL': 'Db Total',
+            'CREDIT_Simpanan Hari Raya': 'Cr Sihara', 'CREDIT_Simpanan Pensiun': 'Cr Pensiun',
+            'CREDIT_Simpanan Pokok': 'Cr Pokok', 'CREDIT_Simpanan Sukarela': 'Cr Sukarela',
+            'CREDIT_Simpanan Wajib': 'Cr Wajib', 'CREDIT_Simpanan Qurban': 'Cr Qurban',
+            'CREDIT_Simpanan Sipadan': 'Cr SIPADAN', 'CREDIT_Simpanan Khusus': 'Cr Khusus',
+            'CREDIT_TOTAL': 'Cr Total', 'DEBIT_PU': 'Db PU', 'CREDIT_PU': 'Cr PU',
+            'DEBIT_TOTAL2': 'Db Total2', 'CREDIT_TOTAL2': 'Cr Total2'
+        }
+        
         desired_order_kdp = [
-        'ID ANGGOTA', 'DUMMY', 'NAMA', 'CENTER', 'KEL', 'HARI', 'JAM', 'SL', 'TRANS. DATE',
-        'Db Qurban', 'Cr Qurban', 'Db Khusus', 'Cr Khusus', 'Db Sihara', 'Cr Sihara',
-        'Db Pensiun', 'Cr Pensiun', 'Db Pokok', 'Cr Pokok', 'Db SIPADAN', 'Cr SIPADAN',
-        'Db Sukarela', 'Cr Sukarela', 'Db Wajib', 'Cr Wajib', 'Db Total', 'Cr Total',
-        'Db PTN', 'Cr PTN', 'Db PRT', 'Cr PRT', 'Db DTP', 'Cr DTP', 'Db PMB', 'Cr PMB',
-        'Db PRR', 'Cr PRR', 'Db PSA', 'Cr PSA', 'Db PU', 'Cr PU', 'Db Total2', 'Cr Total2'
-    ]
-
+            'ID ANGGOTA', 'DUMMY', 'NAMA', 'CENTER', 'KEL', 'HARI', 'JAM', 'SL', 'TRANS. DATE',
+            'Db Qurban', 'Cr Qurban', 'Db Khusus', 'Cr Khusus', 'Db Sihara', 'Cr Sihara',
+            'Db Pensiun', 'Cr Pensiun', 'Db Pokok', 'Cr Pokok', 'Db SIPADAN', 'Cr SIPADAN',
+            'Db Sukarela', 'Cr Sukarela', 'Db Wajib', 'Cr Wajib', 'Db Total', 'Cr Total',
+            'Db PTN', 'Cr PTN', 'Db PRT', 'Cr PRT', 'Db DTP', 'Cr DTP', 'Db PMB', 'Cr PMB',
+            'Db PRR', 'Cr PRR', 'Db PSA', 'Cr PSA', 'Db PU', 'Cr PU', 'Db Total2', 'Cr Total2'
+        ]
 
         # Proses dataframe
         df_kdp = process_dataframe(df_kdp, new_columns_kdp, rename_dict_kdp, desired_order_kdp)
-
-    # Menggabungkan data duplikat dan menjumlahkan nilai numerik
+        
+        # PERBAIKAN: Cek dan hapus kolom duplikat
+        df_kdp = df_kdp.loc[:, ~df_kdp.columns.duplicated()]
+        
+        # Menggabungkan data duplikat dan menjumlahkan nilai numerik
         key_columns = ['ID ANGGOTA', 'DUMMY', 'NAMA', 'CENTER', 'KEL', 'HARI', 'JAM', 'SL', 'TRANS. DATE']
         numeric_columns = [col for col in desired_order_kdp if col not in key_columns]
+        
+        # Pastikan hanya kolom yang ada di df_kdp
+        numeric_columns = [col for col in numeric_columns if col in df_kdp.columns]
+        
         df_kdp = df_kdp.groupby(key_columns, as_index=False)[numeric_columns].sum()
-
-    # Memastikan semua kolom yang diperlukan ada
+        
+        # PERBAIKAN: Cek lagi setelah groupby
+        df_kdp = df_kdp.loc[:, ~df_kdp.columns.duplicated()]
+        
+        # Memastikan semua kolom yang diperlukan ada
         for col in desired_order_kdp:
             if col not in df_kdp.columns:
                 df_kdp[col] = 0
-
-    # Mengurutkan kolom
+        
+        # Mengurutkan kolom
         df_kdp = df_kdp[desired_order_kdp]
+        
         st.write("KDP FINAL:")
         st.write(df_kdp)
         combined_df_list.append(df_kdp)
+        
+    except Exception as e:
+        st.error(f"Error pada pemrosesan KDP: {str(e)}")
+        import traceback
+        st.code(traceback.format_exc())
 
     if combined_df_list:
         # Remove any empty DataFrames
@@ -208,3 +227,4 @@ if uploaded_files:
             st.error("All DataFrames are empty.")
     else:
         st.error("No valid DataFrames to process.")
+
